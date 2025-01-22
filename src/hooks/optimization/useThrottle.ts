@@ -17,7 +17,7 @@ type UseThrottleResult = (...args: any[]) => void;
  */
 export default function useThrottle(callback: (...args: any[]) => void, options?: UseThrottleOptions): UseThrottleResult {
     const lastCalled = useRef<number | null>(null);
-    const bufferTimeout = useRef<number>();
+    const bufferTimeout = useRef<number | undefined>(0);
     const delay: number = options?.delay ?? 100;
     const buffered: boolean = options?.buffered ?? true;
 

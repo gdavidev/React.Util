@@ -6,7 +6,7 @@ type UseDebounceOptions = {
 }
 
 export default function useDebounce(options: UseDebounceOptions) {
-    const timeoutId = useRef<number | undefined>();
+    const timeoutId = useRef<number | undefined>(0);
 
     return useCallback((...args: any[]) => {
         window.clearTimeout(timeoutId.current);

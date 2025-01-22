@@ -54,8 +54,5 @@ export default function CacheProvider(props: PropsWithChildren) {
         }}>
             { props.children }
         </CacheContext.Provider>
-    );
-
-
-
+     );
 }
