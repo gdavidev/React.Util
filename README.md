@@ -1,6 +1,24 @@
 # React.Util
 It's a personal common library meant to be used as a subtree of any react project, contains common optimizations not contained in the react standard library
 
+## Installation
+``` bash
+git subtree add --prefix=src/libs/react.util git@github.com:gdavidev/React.Util.git main
+cd libs/react.util
+npm install
+```
+
+## Contributing
+Pulling latest changes
+``` bash
+git subtree pull --prefix=src/libs/react.util git@github.com:gdavidev/React.Util.git main
+```
+
+Pushing your changes
+``` bash
+git subtree push --prefix=src/libs/react.util git@github.com:gdavidev/React.Util.git main
+```
+
 ## Contents - Hooks
 ### UseStatefulArray
 Contains common functions on array operations when used as a state, it's API aims to mimic a array that triggers state.
@@ -26,6 +44,7 @@ export default function CardContainer() {
 ### UseDeviceWidth
 Maps current window width to tailwind breakpoints for responsive logic in code
 ``` tsx
+export default Example() {
   const { width, breakpoint } = useDeviceWidth();
   
   return (
@@ -33,6 +52,7 @@ Maps current window width to tailwind breakpoints for responsive logic in code
           <LargeComponent /> :
           <SmallComponent />
   );
+}
 ```
 
 ### UseScrollPosition
