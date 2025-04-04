@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
+import useThrottle from "./useThrottle";
 
 /**
  * Enum representing common device width breakpoints.
@@ -40,17 +41,20 @@ export default function useDeviceWidth(): UseDeviceWidthResult {
     const [width, setWidth] = useState(window.innerWidth);
     const [breakpoint, setBreakpoint] = useState<DeviceWidthBreakpoints>(DeviceWidthToBreakpoint(window.innerWidth))
 
-    const handleResize = useCallback(() => {
-        setWidth(window.innerWidth)
+    const updateWidth = useThrottle(() => {
+        setWidth(window.innerWidth);
         setBreakpoint(DeviceWidthToBreakpoint(window.innerWidth))
-    }, []);
+    }, {
+        delay: 200,
+        buffered: true,
+    })
 
     useEffect(() => {
-        window.addEventListener('resize', handleResize);
+        window.addEventListener('resize', updateWidth);
         return () => {
-            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('resize', updateWidth);
         };
-    }, []);
+    }, [updateWidth]);
 
     return {
         width: width,
